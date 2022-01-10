@@ -1,0 +1,70 @@
+Given two binary strings a and b, return their sum as a binary string.
+
+
+class Solution {
+    public String addBinary(String a, String b) {
+        String num1,num2,ans="";
+        boolean carry=false;
+        if(a.length()>b.length()){
+            num1=a;
+            num2=b;
+        }
+        else
+        {
+            num1=b;
+            num2=a;
+        }
+        while(num1.length()>0)
+        {
+            if(num2.length()<=0)
+            {
+                num2="0";
+            }
+            System.out.println(num1.charAt(num1.length()-1));
+            if(num1.charAt(num1.length()-1)=='1'&&num2.charAt(num2.length()-1)=='1'){
+                //System.out.println("1 ans="+ans);
+                if(carry==true){
+                    ans="1"+ans;
+                    //System.out.println("2 ans="+ans);
+                }
+                else{
+                    ans="0"+ans;
+                //System.out.println("3 ans="+ans);
+                }
+                carry=true;
+            }
+            else if(num1.charAt(num1.length()-1)=='0'&&num2.charAt(num2.length()-1)=='0'){
+                //System.out.println("4 ans="+ans);
+                if(carry==true)
+                    
+                    ans="1"+ans;
+                else
+                    ans="0"+ans;
+                carry=false;
+            }
+            else
+            {
+                //System.out.println("5 ans="+ans);
+                if(carry==true)
+                {
+                    ans="0"+ans;
+                }
+                if(carry==false)
+                {
+                    ans="1"+ans;
+                    
+                }
+            }
+            num1=num1.substring(0,num1.length()-1);
+            if(num2.length()>=1){
+            num2=num2.substring(0,num2.length()-1);
+            }
+            else
+                num2="";
+        }
+        if (carry==false)
+        return ans;
+        else
+            return "1"+ans;
+    }
+}
